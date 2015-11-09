@@ -120,6 +120,28 @@ public class Correlation {
 				}
 			}
 			
+			public void timeAttachedErrors(int from,int DIncrement) throws IOException{
+				for (int i=0 ; i<loopsize;i++){
+					xvalues[i]=DIncrement*(i+1);
+				String infilename ="/home/s1203908/proteinBridging/timeAttached/dump_run__D"+(i+1)+".DNAdumbells";
+				Polymer p = new Polymer(infilename,(int) (10), framenumber);
+				double avg=p.errorAvgTimeAttached();
+				System.out.println(avg);
+				yvalues[i]=avg;
+				}
+			}
+			
+			public void forceFractionAttached(int from,double DIncrement) throws IOException{
+				double runtime = 6000000 * .005 ;
+				for (int i=(int) (loopsize/2) ; i<loopsize;i++){
+					xvalues[i]=DIncrement*(i+1);
+				String infilename ="/home/s1203908/proteinBridging/timeAttached/dump_run__D"+(i+1)+".DNAdumbells";
+				Polymer p = new Polymer(infilename,(int) (10), framenumber);
+				double total=p.totalTimeAttached();
+				System.out.println(total);
+				yvalues[i]=total / runtime;
+				}
+			}
 			
 			public void singleRgyr(double timeIncrement, int filenumber) throws IOException{
 				this.xvalues=new double[framenumber];	

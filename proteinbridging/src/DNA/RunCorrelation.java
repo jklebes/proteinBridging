@@ -10,7 +10,7 @@ public class RunCorrelation {
 	 */
 	static int framenumber=6000;
 	private static int loopnumber=20;
-	private static int from = 0;
+	private static int from = 1000;
 	private static int numberincrement=1;
 	
 	public static void main(String[] args) throws IOException {
@@ -35,11 +35,10 @@ public class RunCorrelation {
 		//rt.singleRgyr(1,2);
 		//
 		//rt.writeFile();
-		Correlation dt= new Correlation(loopnumber, framenumber) ;
-		dt.setProteinNumber(10);
-		dt.startFile("/home/jsk/proteinBridging/timeAttached/energyavgtime.txt");
-		dt.forceTimeAttached(from,numberincrement);
-		dt.writeFile();
+		Correlation ne= new Correlation(loopnumber, framenumber) ;
+ne.startFile("/home/s1203908/proteinBridging/D15/rgyrnp.txt");
+		ne.numberRgyr(from,numberincrement);
+		//dt.writeFile();
 	}
 
 }

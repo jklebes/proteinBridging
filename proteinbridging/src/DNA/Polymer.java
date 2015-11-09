@@ -98,8 +98,40 @@ public class Polymer {
 			//also saves array of number attached each frame here but this is not needed
 			attached[i-1]=frame.countAttached();
 		}
-		//return avg for this run from total time arrays created in frame
+		//return avg for this run from total time arrays created in frame]
 		return frame.avgTimeAttached();
+	}
+
+	
+	public double errorAvgTimeAttached() throws IOException {
+		frame = new Frame(filename, proteinnumber);
+		for (int i=1 ; i<=framenumber;i++){
+			System.out.println(i);
+			frame.readNextPoints(i);
+			frame.trimProteins();
+			frame.makeProteinArrays();
+			
+			//continuously updates time arrays in frame
+			//also saves array of number attached each frame here but this is not needed
+			attached[i-1]=frame.countAttached();
+		}
+		//return avg for this run from total time arrays created in frame]
+		return frame.errorAvgTimeAttached();
+	}
+	
+	//go through each time frame
+	public double totalTimeAttached() throws IOException {
+		frame = new Frame(filename, proteinnumber);
+		for (int i=1 ; i<=framenumber;i++){
+			System.out.println(i);
+			frame.readNextPoints(i);
+			frame.trimProteins();
+			frame.makeProteinArrays();
+			
+			attached[i-1]=frame.countAttached();
+		}
+		//total time attached this frame, per protein
+		return frame.totalTimeAttached() / proteinnumber;
 	}
 
 

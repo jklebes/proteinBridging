@@ -203,4 +203,29 @@ public class Frame {
 			return avg;
 	}
 	
+	
+	public double totalTimeAttached(){
+		double total=0;
+		for (int i=0;i<proteinsides.length;i++){
+			total += totaltimeattached[i];
+			
+		}
+		return total;
+	}
+	public double errorAvgTimeAttached() {
+		double total=0;
+		int number = 0;
+		double timesquaredtotal=0;
+		for (int i=0;i<proteinsides.length;i++){
+			total += totaltimeattached[i];
+			number += detachmentscounter[i];
+			timesquaredtotal += totaltimeattached[i]*totaltimeattached[i];
+		}
+		double avgtimesquared = (total/(double)number)*(total/(double)number);
+		double timesquaredavg = timesquaredtotal / (double)number;
+		double diff = timesquaredavg - avgtimesquared;
+		double error = Math.sqrt(diff)/Math.sqrt(number);
+		return error;
+	}
+	
 }
